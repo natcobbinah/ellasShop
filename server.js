@@ -8,7 +8,6 @@ const uri = 'mongodb+srv://m001-student:m001-mongodb-basics@sandbox.1ljd7.mongod
 //mongodb+srv://m001-student:m001-mongodb-basics@sandbox.1ljd7.mongodb.net/ellasShop?authSource=admin
 //middleware 
 app.use(express.json())
-app.use(express.static("public"))
 app.use(cors())
 
 //initialize db connectivity options
