@@ -3,7 +3,7 @@ const app = express()
 var cors = require('cors')
 const { MongoClient } = require('mongodb')
 
-const uri = process.env.MONGODB_URI;
+const uri = 'mongodb+srv://m001-student:m001-mongodb-basics@sandbox.1ljd7.mongodb.net/ellasShop?authSource=admin';
 
 //mongodb+srv://m001-student:m001-mongodb-basics@sandbox.1ljd7.mongodb.net/ellasShop?authSource=admin
 //middleware 
