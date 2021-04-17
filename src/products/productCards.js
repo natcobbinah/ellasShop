@@ -4,9 +4,10 @@ import CardDeck from 'react-bootstrap/CardDeck'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Table from 'react-bootstrap/Table'
 import { allProductData } from '../dummydata/dropdownSearchdata'
 import PaginatePage from '../pagination/paginatePage'
-import { fetchGIFS } from '../httpContent/endpoints'
+import { fetchGIFS,getAllProducts } from '../httpContent/endpoints'
 
 class ProductList extends Component{
     constructor(props) {
@@ -14,7 +15,8 @@ class ProductList extends Component{
 
         this.state = {
             result: null,
-            err:null,
+            err: null,
+            productsResult:null,
         }
     }
 
@@ -22,10 +24,14 @@ class ProductList extends Component{
         fetchGIFS()
             .then(result => this.setState({result: result.data}))
             .catch(err => this.setState(err))
+        
+        getAllProducts()
+            .then(result => this.setState({ productsResult: result.data }))
+            .catch(err => this.setState(err))
     }
 
     render() {
-    const { result } = this.state;
+    const { result, productsResult } = this.state;
     return (
         <Container fluid>
             <Row>
@@ -34,6 +40,7 @@ class ProductList extends Component{
                 </Col>
             </Row>
             <Row>
+                <ShowTableRecords productsResult = {productsResult}/>
                 <PaginatePage/>
             </Row>
          </Container>
@@ -76,6 +83,23 @@ const ShowProductList = ({ productData, imageData }) => {
         <p> Loading ... </p>
        )
     }
+}
+
+const ShowTableRecords = ({productsResult}) => {
+    return (
+        <Table striped bordered hover>
+            {productsResult.map(product => (
+              <tbody>
+                    <tr key={ product._id}>
+                        <td>{product.productId}</td>
+                        <td>{product.productName}</td>
+                        <td>{product.price}</td>
+                        <td>{product.quantity }</td>
+                    </tr>
+                </tbody>
+            ))}
+        </Table>
+    )
 }
 
 export default ProductList

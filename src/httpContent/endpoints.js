@@ -11,5 +11,11 @@ function fetchGIFS(){
  )
 }
 
+function getAllProducts() {
+       return (
+              axiosinstance.get('/api/products')
+       )
+}
+
 export {fetchGIFS}
    
