@@ -1,4 +1,4 @@
-import { axiosinstance } from '../httpContent/axiosInstance';
+import { axiosinstance,axiosinstance2 } from '../httpContent/axiosInstance';
 const limit = "limit=25";
 const rating = "rating=pg";
 const trending = "trending";
@@ -13,9 +13,9 @@ function fetchGIFS(){
 
 function getAllProducts() {
        return (
-              axiosinstance.get('/api/products')
+              axiosinstance2.get('/api/products')
        )
 }
 
-export {fetchGIFS}
+export {fetchGIFS,getAllProducts}
    

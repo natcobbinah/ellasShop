@@ -16,7 +16,7 @@ class ProductList extends Component{
         this.state = {
             result: null,
             err: null,
-            productsResult:null,
+            productsResult:[],
         }
     }
 
@@ -85,21 +85,24 @@ const ShowProductList = ({ productData, imageData }) => {
     }
 }
 
-const ShowTableRecords = ({productsResult}) => {
-    return (
-        <Table striped bordered hover>
-            {productsResult.map(product => (
-              <tbody>
-                    <tr key={ product._id}>
-                        <td>{product.productId}</td>
-                        <td>{product.productName}</td>
-                        <td>{product.price}</td>
-                        <td>{product.quantity }</td>
-                    </tr>
-                </tbody>
-            ))}
-        </Table>
-    )
+const ShowTableRecords = ({ productsResult }) => {
+    if (productsResult) {
+        return (
+            <Table>
+                <tr>
+                    <td>{productsResult._id}</td>
+                    <td>{productsResult.productId}</td>
+                    <td>{productsResult.productName}</td>
+                    <td>{ productsResult.quantity}</td>
+                </tr>
+           </Table>
+        )
+    } else {
+        return (
+            <p> Loading ... </p>
+        )
+    }
 }
+
 
 export default ProductList
