@@ -8,6 +8,7 @@ import Table from 'react-bootstrap/Table'
 import { allProductData } from '../dummydata/dropdownSearchdata'
 import PaginatePage from '../pagination/paginatePage'
 import { fetchGIFS,getAllProducts } from '../httpContent/endpoints'
+import {BrowserRouter,Switch,Route,Link} from 'react-router-dom'
 
 class ProductList extends Component{
     constructor(props) {
@@ -68,7 +69,9 @@ const ShowProductList = ({ productData, imageData }) => {
                                         </Card.Text>
                                     </Card.Body>
                                     <Card.Footer>
-                                        <small className="text-muted">Shop NOW</small>
+                                        <small className="text-muted">
+                                            <Link to={product.link}>Shop NOW</Link>
+                                        </small>
                                     </Card.Footer>
                                 </Card>
                             </CardDeck>

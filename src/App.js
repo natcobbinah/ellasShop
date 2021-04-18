@@ -8,6 +8,8 @@ import ImageSliders from './imageSliders/carousel.js'
 import ProductList from './products/productCards.js'
 import PageFooter from './footer/pageFooter'
 import PageFooterContent from './footer/pageFooterContent'
+import ShowDetailHairProductContent from './allComponentsPage/hairProductsContent'
+import ShowDetailSkinProductContent from './allComponentsPage/skinProductsContent'
 import './App.css'
 
 class App extends Component{
@@ -26,17 +28,23 @@ class App extends Component{
           </Col>
         </Row>
         
-        <Row>
-          <Col className="carousel_width my-1">
-            <ImageSliders />
-          </Col>
-        </Row>
+        {/* Browser router to change page content starts here */}
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/">
+              <HomePageContent/>
+           </Route>
         
-        <Row >
-          <Col className="my-5">
-            <ProductList />
-          </Col>
-        </Row>
+            <Route path="/hairgrowthProducts">
+                  <ShowDetailHairProductContent/>
+            </Route>
+
+            <Route path="/skinProducts">
+                  <ShowDetailSkinProductContent/>
+            </Route>
+        </Switch>
+        </BrowserRouter>
+        {/* Browser router to change page content ends here */}
 
          <Row className="my-5">
           <Col className="my-5">
@@ -47,6 +55,24 @@ class App extends Component{
       </Container>
     );
   }
+}
+
+const HomePageContent = () => {
+  return (
+    <Container fluid>
+     <Row>
+        <Col className="carousel_width my-1">
+            <ImageSliders />
+        </Col>
+      </Row>
+              
+      <Row >
+        <Col className="my-5">
+          <ProductList />
+        </Col>
+      </Row>
+    </Container>
+  )
 }
 
 export default App;
